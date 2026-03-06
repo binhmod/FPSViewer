@@ -1,0 +1,66 @@
+[
+    {
+        "merged": "me.binhmod.fps.app-release-5:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "me.binhmod.fps.app-main-6:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "me.binhmod.fps.app-release-5:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "me.binhmod.fps.app-main-6:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "me.binhmod.fps.app-release-5:/xml_data_extraction_rules.xml.flat",
+        "source": "me.binhmod.fps.app-main-6:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "me.binhmod.fps.app-release-5:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "me.binhmod.fps.app-main-6:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "me.binhmod.fps.app-release-5:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "me.binhmod.fps.app-main-6:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "me.binhmod.fps.app-release-5:/drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "me.binhmod.fps.app-main-6:/drawable-v24/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "me.binhmod.fps.app-release-5:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "me.binhmod.fps.app-main-6:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "me.binhmod.fps.app-release-5:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "me.binhmod.fps.app-main-6:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "me.binhmod.fps.app-release-5:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "me.binhmod.fps.app-main-6:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "me.binhmod.fps.app-release-5:/drawable_ic_launcher_background.xml.flat",
+        "source": "me.binhmod.fps.app-main-6:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "me.binhmod.fps.app-release-5:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "me.binhmod.fps.app-main-6:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "me.binhmod.fps.app-release-5:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "me.binhmod.fps.app-main-6:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "me.binhmod.fps.app-release-5:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "me.binhmod.fps.app-main-6:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "me.binhmod.fps.app-release-5:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "me.binhmod.fps.app-main-6:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "me.binhmod.fps.app-release-5:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "me.binhmod.fps.app-main-6:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "me.binhmod.fps.app-release-5:/xml_backup_rules.xml.flat",
+        "source": "me.binhmod.fps.app-main-6:/xml/backup_rules.xml"
+    }
+]

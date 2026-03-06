@@ -1,0 +1,69 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="me.binhmod.fps"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="26"
+9        android:targetSdkVersion="34" />
+10
+11    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+11-->/storage/emulated/0/AndroidIDEProjects/FPSViewer/app/src/main/AndroidManifest.xml:4:5-77
+11-->/storage/emulated/0/AndroidIDEProjects/FPSViewer/app/src/main/AndroidManifest.xml:4:22-75
+12    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+12-->/storage/emulated/0/AndroidIDEProjects/FPSViewer/app/src/main/AndroidManifest.xml:5:5-76
+12-->/storage/emulated/0/AndroidIDEProjects/FPSViewer/app/src/main/AndroidManifest.xml:5:22-74
+13    <uses-permission android:name="moe.shizuku.manager.permission.API_V23" />
+13-->[dev.rikka.shizuku:provider:12.2.0] /data/data/com.tom.rv2ide/files/home/.gradle/caches/9.0.0/transforms/4c29945f459ae085fbef1383de742df0/transformed/provider-12.2.0/AndroidManifest.xml:10:5-78
+13-->[dev.rikka.shizuku:provider:12.2.0] /data/data/com.tom.rv2ide/files/home/.gradle/caches/9.0.0/transforms/4c29945f459ae085fbef1383de742df0/transformed/provider-12.2.0/AndroidManifest.xml:10:22-75
+14
+15    <application
+15-->/storage/emulated/0/AndroidIDEProjects/FPSViewer/app/src/main/AndroidManifest.xml:7:5-31:19
+16        android:extractNativeLibs="false"
+17        android:label="FPSViewer"
+17-->/storage/emulated/0/AndroidIDEProjects/FPSViewer/app/src/main/AndroidManifest.xml:8:9-34
+18        android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar" >
+18-->/storage/emulated/0/AndroidIDEProjects/FPSViewer/app/src/main/AndroidManifest.xml:9:9-77
+19        <provider
+20            android:name="rikka.shizuku.ShizukuProvider"
+20-->/storage/emulated/0/AndroidIDEProjects/FPSViewer/app/src/main/AndroidManifest.xml:12:13-57
+21            android:authorities="me.binhmod.fps.shizuku"
+21-->/storage/emulated/0/AndroidIDEProjects/FPSViewer/app/src/main/AndroidManifest.xml:13:13-59
+22            android:exported="true" />
+22-->/storage/emulated/0/AndroidIDEProjects/FPSViewer/app/src/main/AndroidManifest.xml:14:13-36
+23
+24        <activity
+24-->/storage/emulated/0/AndroidIDEProjects/FPSViewer/app/src/main/AndroidManifest.xml:16:9-25:20
+25            android:name="me.binhmod.fps.MainActivity"
+25-->/storage/emulated/0/AndroidIDEProjects/FPSViewer/app/src/main/AndroidManifest.xml:17:13-41
+26            android:exported="true" >
+26-->/storage/emulated/0/AndroidIDEProjects/FPSViewer/app/src/main/AndroidManifest.xml:18:13-36
+27            <intent-filter>
+27-->/storage/emulated/0/AndroidIDEProjects/FPSViewer/app/src/main/AndroidManifest.xml:20:13-23:29
+28                <action android:name="android.intent.action.MAIN" />
+28-->/storage/emulated/0/AndroidIDEProjects/FPSViewer/app/src/main/AndroidManifest.xml:21:17-68
+28-->/storage/emulated/0/AndroidIDEProjects/FPSViewer/app/src/main/AndroidManifest.xml:21:25-66
+29
+30                <category android:name="android.intent.category.LAUNCHER" />
+30-->/storage/emulated/0/AndroidIDEProjects/FPSViewer/app/src/main/AndroidManifest.xml:22:17-76
+30-->/storage/emulated/0/AndroidIDEProjects/FPSViewer/app/src/main/AndroidManifest.xml:22:27-74
+31            </intent-filter>
+32        </activity>
+33
+34        <service
+34-->/storage/emulated/0/AndroidIDEProjects/FPSViewer/app/src/main/AndroidManifest.xml:27:9-29:55
+35            android:name="me.binhmod.fps.FPSService"
+35-->/storage/emulated/0/AndroidIDEProjects/FPSViewer/app/src/main/AndroidManifest.xml:28:13-39
+36            android:foregroundServiceType="dataSync" />
+36-->/storage/emulated/0/AndroidIDEProjects/FPSViewer/app/src/main/AndroidManifest.xml:29:13-53
+37
+38        <meta-data
+38-->[dev.rikka.shizuku:provider:12.2.0] /data/data/com.tom.rv2ide/files/home/.gradle/caches/9.0.0/transforms/4c29945f459ae085fbef1383de742df0/transformed/provider-12.2.0/AndroidManifest.xml:13:9-15:36
+39            android:name="moe.shizuku.client.V3_SUPPORT"
+39-->[dev.rikka.shizuku:provider:12.2.0] /data/data/com.tom.rv2ide/files/home/.gradle/caches/9.0.0/transforms/4c29945f459ae085fbef1383de742df0/transformed/provider-12.2.0/AndroidManifest.xml:14:13-57
+40            android:value="true" />
+40-->[dev.rikka.shizuku:provider:12.2.0] /data/data/com.tom.rv2ide/files/home/.gradle/caches/9.0.0/transforms/4c29945f459ae085fbef1383de742df0/transformed/provider-12.2.0/AndroidManifest.xml:15:13-33
+41    </application>
+42
+43</manifest>

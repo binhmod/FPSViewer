@@ -1,0 +1,239 @@
+androidx.annotation.AnimRes
+androidx.annotation.AnimatorRes
+androidx.annotation.AnyRes
+androidx.annotation.AnyThread
+androidx.annotation.ArrayRes
+androidx.annotation.AttrRes
+androidx.annotation.BinderThread
+androidx.annotation.BoolRes
+androidx.annotation.CallSuper
+androidx.annotation.CheckResult
+androidx.annotation.ChecksSdkIntAtLeast
+androidx.annotation.ColorInt
+androidx.annotation.ColorLong
+androidx.annotation.ColorRes
+androidx.annotation.ContentView
+androidx.annotation.DimenRes
+androidx.annotation.Dimension
+androidx.annotation.Discouraged
+androidx.annotation.DisplayContext
+androidx.annotation.DoNotInline
+androidx.annotation.DrawableRes
+androidx.annotation.FloatRange
+androidx.annotation.FontRes
+androidx.annotation.FractionRes
+androidx.annotation.GravityInt
+androidx.annotation.GuardedBy
+androidx.annotation.HalfFloat
+androidx.annotation.IdRes
+androidx.annotation.InspectableProperty$EnumEntry
+androidx.annotation.InspectableProperty$FlagEntry
+androidx.annotation.InspectableProperty$ValueType
+androidx.annotation.InspectableProperty
+androidx.annotation.IntDef
+androidx.annotation.IntRange
+androidx.annotation.IntegerRes
+androidx.annotation.InterpolatorRes
+androidx.annotation.LayoutRes
+androidx.annotation.LongDef
+androidx.annotation.MainThread
+androidx.annotation.MenuRes
+androidx.annotation.NavigationRes
+androidx.annotation.NonNull
+androidx.annotation.NonUiContext
+androidx.annotation.Nullable
+androidx.annotation.PluralsRes
+androidx.annotation.Px
+androidx.annotation.RawRes
+androidx.annotation.RequiresApi
+androidx.annotation.RequiresFeature
+androidx.annotation.RequiresPermission$Read
+androidx.annotation.RequiresPermission$Write
+androidx.annotation.RequiresPermission
+androidx.annotation.RestrictTo$Scope
+androidx.annotation.RestrictTo
+androidx.annotation.Size
+androidx.annotation.StringDef
+androidx.annotation.StringRes
+androidx.annotation.StyleRes
+androidx.annotation.StyleableRes
+androidx.annotation.TransitionRes
+androidx.annotation.UiContext
+androidx.annotation.UiThread
+androidx.annotation.VisibleForTesting
+androidx.annotation.WorkerThread
+androidx.annotation.XmlRes
+me.binhmod.fps.MainActivity:
+    private static final int REQ
+me.binhmod.fps.R$drawable
+me.binhmod.fps.R$mipmap
+me.binhmod.fps.R$xml
+me.binhmod.fps.R
+moe.shizuku.server.IRemoteProcess$Default
+moe.shizuku.server.IRemoteProcess$Stub$Proxy:
+    public boolean alive()
+    public java.lang.String getInterfaceDescriptor()
+    public boolean waitForTimeout(long,java.lang.String)
+moe.shizuku.server.IRemoteProcess$Stub:
+    private static final java.lang.String DESCRIPTOR
+    static final int TRANSACTION_alive
+    static final int TRANSACTION_destroy
+    static final int TRANSACTION_exitValue
+    static final int TRANSACTION_getErrorStream
+    static final int TRANSACTION_getInputStream
+    static final int TRANSACTION_getOutputStream
+    static final int TRANSACTION_waitFor
+    static final int TRANSACTION_waitForTimeout
+    public void <init>()
+    public android.os.IBinder asBinder()
+    public boolean onTransact(int,android.os.Parcel,android.os.Parcel,int)
+    public static boolean setDefaultImpl(moe.shizuku.server.IRemoteProcess)
+moe.shizuku.server.IRemoteProcess:
+    public abstract boolean alive()
+    public abstract boolean waitForTimeout(long,java.lang.String)
+moe.shizuku.server.IShizukuApplication$Default
+moe.shizuku.server.IShizukuApplication$Stub$Proxy
+moe.shizuku.server.IShizukuApplication$Stub:
+    private static final java.lang.String DESCRIPTOR
+    static final int TRANSACTION_bindApplication
+    static final int TRANSACTION_dispatchRequestPermissionResult
+    static final int TRANSACTION_showPermissionConfirmation
+    public static moe.shizuku.server.IShizukuApplication asInterface(android.os.IBinder)
+    public static moe.shizuku.server.IShizukuApplication getDefaultImpl()
+    public static boolean setDefaultImpl(moe.shizuku.server.IShizukuApplication)
+moe.shizuku.server.IShizukuService$Default
+moe.shizuku.server.IShizukuService$Stub$Proxy:
+    public int addUserService(moe.shizuku.server.IShizukuServiceConnection,android.os.Bundle)
+    public void attachApplication(moe.shizuku.server.IShizukuApplication,java.lang.String)
+    public void attachUserService(android.os.IBinder,android.os.Bundle)
+    public int checkPermission(java.lang.String)
+    public void dispatchPackageChanged(android.content.Intent)
+    public void dispatchPermissionConfirmationResult(int,int,int,android.os.Bundle)
+    public void exit()
+    public int getFlagsForUid(int,int)
+    public java.lang.String getInterfaceDescriptor()
+    public java.lang.String getSELinuxContext()
+    public java.lang.String getSystemProperty(java.lang.String,java.lang.String)
+    public int getUid()
+    public int getVersion()
+    public boolean isHidden(int)
+    public int removeUserService(moe.shizuku.server.IShizukuServiceConnection,android.os.Bundle)
+    public void setSystemProperty(java.lang.String,java.lang.String)
+    public boolean shouldShowRequestPermissionRationale()
+    public void updateFlagsForUid(int,int,int)
+moe.shizuku.server.IShizukuService$Stub:
+    private static final java.lang.String DESCRIPTOR
+    static final int TRANSACTION_addUserService
+    static final int TRANSACTION_attachApplication
+    static final int TRANSACTION_attachUserService
+    static final int TRANSACTION_checkPermission
+    static final int TRANSACTION_checkSelfPermission
+    static final int TRANSACTION_dispatchPackageChanged
+    static final int TRANSACTION_dispatchPermissionConfirmationResult
+    static final int TRANSACTION_exit
+    static final int TRANSACTION_getFlagsForUid
+    static final int TRANSACTION_getSELinuxContext
+    static final int TRANSACTION_getSystemProperty
+    static final int TRANSACTION_getUid
+    static final int TRANSACTION_getVersion
+    static final int TRANSACTION_isHidden
+    static final int TRANSACTION_newProcess
+    static final int TRANSACTION_removeUserService
+    static final int TRANSACTION_requestPermission
+    static final int TRANSACTION_setSystemProperty
+    static final int TRANSACTION_shouldShowRequestPermissionRationale
+    static final int TRANSACTION_updateFlagsForUid
+    public void <init>()
+    public android.os.IBinder asBinder()
+    public boolean onTransact(int,android.os.Parcel,android.os.Parcel,int)
+    public static boolean setDefaultImpl(moe.shizuku.server.IShizukuService)
+moe.shizuku.server.IShizukuService:
+    public abstract int addUserService(moe.shizuku.server.IShizukuServiceConnection,android.os.Bundle)
+    public abstract void attachApplication(moe.shizuku.server.IShizukuApplication,java.lang.String)
+    public abstract void attachUserService(android.os.IBinder,android.os.Bundle)
+    public abstract int checkPermission(java.lang.String)
+    public abstract void dispatchPackageChanged(android.content.Intent)
+    public abstract void dispatchPermissionConfirmationResult(int,int,int,android.os.Bundle)
+    public abstract void exit()
+    public abstract int getFlagsForUid(int,int)
+    public abstract java.lang.String getSELinuxContext()
+    public abstract java.lang.String getSystemProperty(java.lang.String,java.lang.String)
+    public abstract int getUid()
+    public abstract int getVersion()
+    public abstract boolean isHidden(int)
+    public abstract int removeUserService(moe.shizuku.server.IShizukuServiceConnection,android.os.Bundle)
+    public abstract void setSystemProperty(java.lang.String,java.lang.String)
+    public abstract boolean shouldShowRequestPermissionRationale()
+    public abstract void updateFlagsForUid(int,int,int)
+moe.shizuku.server.IShizukuServiceConnection$Default
+moe.shizuku.server.IShizukuServiceConnection$Stub$Proxy
+moe.shizuku.server.IShizukuServiceConnection$Stub
+moe.shizuku.server.IShizukuServiceConnection
+rikka.shizuku.Shizuku$UserServiceArgs
+rikka.shizuku.Shizuku:
+    public void <init>()
+    public static void addBinderDeadListener(rikka.shizuku.Shizuku$OnBinderDeadListener)
+    public static void addBinderReceivedListener(rikka.shizuku.Shizuku$OnBinderReceivedListener)
+    private static void addBinderReceivedListener(rikka.shizuku.Shizuku$OnBinderReceivedListener,boolean)
+    public static void addBinderReceivedListenerSticky(rikka.shizuku.Shizuku$OnBinderReceivedListener)
+    public static void attachUserService(android.os.IBinder,android.os.Bundle)
+    public static void bindUserService(rikka.shizuku.Shizuku$UserServiceArgs,android.content.ServiceConnection)
+    public static int checkRemotePermission(java.lang.String)
+    public static void dispatchPermissionConfirmationResult(int,int,int,android.os.Bundle)
+    public static void exit()
+    public static int getFlagsForUid(int,int)
+    public static int getLatestServiceVersion()
+    public static java.lang.String getSELinuxContext()
+    public static int getServerPatchVersion()
+    public static int getUid()
+    public static int getVersion()
+    public static boolean isPreV11()
+    public static boolean peekUserService(rikka.shizuku.Shizuku$UserServiceArgs,android.content.ServiceConnection)
+    public static boolean removeBinderDeadListener(rikka.shizuku.Shizuku$OnBinderDeadListener)
+    public static boolean removeBinderReceivedListener(rikka.shizuku.Shizuku$OnBinderReceivedListener)
+    public static boolean removeRequestPermissionResultListener(rikka.shizuku.Shizuku$OnRequestPermissionResultListener)
+    public static boolean shouldShowRequestPermissionRationale()
+    public static void transactRemote(android.os.Parcel,android.os.Parcel,int)
+    public static void unbindUserService(rikka.shizuku.Shizuku$UserServiceArgs,android.content.ServiceConnection,boolean)
+    public static void updateFlagsForUid(int,int,int)
+rikka.shizuku.ShizukuApiConstants
+rikka.shizuku.ShizukuBinderWrapper
+rikka.shizuku.ShizukuProvider$1
+rikka.shizuku.ShizukuProvider:
+    public static final java.lang.String ACTION_BINDER_RECEIVED
+    private static final java.lang.String EXTRA_BINDER
+    public static final java.lang.String MANAGER_APPLICATION_ID
+    public static final java.lang.String METHOD_GET_BINDER
+    public static final java.lang.String METHOD_SEND_BINDER
+    public static final java.lang.String PERMISSION
+    private static final java.lang.String TAG
+    public static void disableAutomaticSuiInitialization()
+    public static void enableMultiProcessSupport(boolean)
+    public static void requestBinderForNonProviderProcess(android.content.Context)
+    public static void setIsProviderProcess(boolean)
+rikka.shizuku.ShizukuRemoteProcess:
+    private static final java.lang.String TAG
+    public boolean alive()
+    public android.os.IBinder asBinder()
+    public boolean waitForTimeout(long,java.util.concurrent.TimeUnit)
+rikka.shizuku.ShizukuServiceConnection
+rikka.shizuku.ShizukuServiceConnections
+rikka.shizuku.ShizukuSystemProperties
+rikka.shizuku.SystemServiceHelper:
+    public void <init>()
+    public static java.lang.Integer getTransactionCode(java.lang.String,java.lang.String)
+    public static android.os.Parcel obtainParcel(java.lang.String,java.lang.String,java.lang.String)
+    public static android.os.Parcel obtainParcel(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+rikka.shizuku.aidl.R
+rikka.shizuku.api.R
+rikka.shizuku.provider.R
+rikka.shizuku.shared.BuildConfig
+rikka.shizuku.shared.R
+rikka.sui.Sui:
+    private static final int BRIDGE_ACTION_GET_BINDER
+    private static final java.lang.String BRIDGE_SERVICE_DESCRIPTOR
+    private static final java.lang.String BRIDGE_SERVICE_NAME
+    private static final int BRIDGE_TRANSACTION_CODE
+    public void <init>()
+rikka.shizuku.Shizuku$OnBinderDeadListener
+rikka.shizuku.Shizuku$OnBinderReceivedListener

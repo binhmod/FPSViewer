@@ -1,0 +1,8 @@
+me.binhmod.fps.app-pngs-0 /storage/emulated/0/AndroidIDEProjects/FPSViewer/app/build/generated/res/pngs/debug
+me.binhmod.fps.app-resValues-1 /storage/emulated/0/AndroidIDEProjects/FPSViewer/app/build/generated/res/resValues/debug
+me.binhmod.fps.app-updated_navigation_xml-2 /storage/emulated/0/AndroidIDEProjects/FPSViewer/app/build/generated/updated_navigation_xml/debug
+me.binhmod.fps.app-packageDebugResources-3 /storage/emulated/0/AndroidIDEProjects/FPSViewer/app/build/intermediates/incremental/debug/packageDebugResources/merged.dir
+me.binhmod.fps.app-packageDebugResources-4 /storage/emulated/0/AndroidIDEProjects/FPSViewer/app/build/intermediates/incremental/debug/packageDebugResources/stripped.dir
+me.binhmod.fps.app-debug-5 /storage/emulated/0/AndroidIDEProjects/FPSViewer/app/build/intermediates/merged_res/debug/mergeDebugResources
+me.binhmod.fps.app-debug-6 /storage/emulated/0/AndroidIDEProjects/FPSViewer/app/src/debug/res
+me.binhmod.fps.app-main-7 /storage/emulated/0/AndroidIDEProjects/FPSViewer/app/src/main/res

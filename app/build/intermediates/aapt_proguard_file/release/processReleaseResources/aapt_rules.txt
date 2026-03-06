@@ -1,0 +1,3 @@
+-keep class me.binhmod.fps.FPSService { <init>(); }
+-keep class me.binhmod.fps.MainActivity { <init>(); }
+-keep class rikka.shizuku.ShizukuProvider { <init>(); }
