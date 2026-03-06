@@ -1,6 +1,0 @@
-int drawable ic_launcher_background 0x7f010001
-int drawable ic_launcher_foreground 0x7f010002
-int mipmap ic_launcher 0x7f020000
-int mipmap ic_launcher_round 0x7f020001
-int xml backup_rules 0x7f030000
-int xml data_extraction_rules 0x7f030001

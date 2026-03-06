@@ -1,7 +1,0 @@
-me.binhmod.fps:xml/backup_rules = 0x7f030000
-me.binhmod.fps:drawable/ic_launcher_foreground = 0x7f010002
-me.binhmod.fps:mipmap/ic_launcher_round = 0x7f020001
-me.binhmod.fps:mipmap/ic_launcher = 0x7f020000
-me.binhmod.fps:drawable/ic_launcher_background = 0x7f010001
-me.binhmod.fps:xml/data_extraction_rules = 0x7f030001
-me.binhmod.fps:drawable/$ic_launcher_foreground__0 = 0x7f010000
