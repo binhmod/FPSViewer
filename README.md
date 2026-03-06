@@ -12,6 +12,7 @@ The app runs a floating overlay that shows the current frames per second of the 
 
 - 📊 Realtime FPS counter
 - 📱 Floating overlay
+- 🔩 Double tap to off
 - 🔍 Shows foreground package name
 - ⚡ Very low CPU usage
 - 🪶 Extremely lightweight
