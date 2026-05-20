@@ -2,7 +2,6 @@ package me.binhmod.fps;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -12,89 +11,139 @@ import android.widget.Toast;
 import rikka.shizuku.Shizuku;
 
 /**
+ * MainActivity — Launcher:
+ *  1. Kiểm tra SYSTEM_ALERT_WINDOW permission
+ *  2. Hỏi mode (Shizuku / Root)
+ *  3. Start FPSService rồi tự đóng
+ *
  * @author binhmod
- * @date 2026/6/3
  */
-
 public class MainActivity extends Activity {
-    private static final int REQ = 100;
+
+    private static final int REQ_OVERLAY = 101;
+    private static final int REQ_SHIZUKU = 100;
+
+    // Listener giữ reference để remove sau
+    private Shizuku.OnRequestPermissionResultListener shizukuListener;
 
     @Override
-    protected void onCreate(Bundle b) {
-        super.onCreate(b);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
+        // Bước 1: Kiểm tra overlay permission
         if (!Settings.canDrawOverlays(this)) {
-            Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                    Uri.parse("package:" + getPackageName()));
-            startActivity(intent);
-            finish();
+            new AlertDialog.Builder(this)
+                    .setTitle("Cần quyền hiển thị trên màn hình")
+                    .setMessage("FPS Viewer cần quyền 'Hiển thị trên ứng dụng khác' để hoạt động.")
+                    .setCancelable(false)
+                    .setPositiveButton("Cấp quyền", (d, w) -> {
+                        Intent intent = new Intent(
+                                Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                                Uri.parse("package:" + getPackageName())
+                        );
+                        startActivityForResult(intent, REQ_OVERLAY);
+                    })
+                    .setNegativeButton("Hủy", (d, w) -> finish())
+                    .show();
             return;
         }
 
         showModeDialog();
     }
 
-    private void showModeDialog() {
-        final String[] modes = {"Shizuku", "Root"};
-
-        new AlertDialog.Builder(this)
-                .setTitle("Permission:\nhttps://github.com/binhmod/FPSViewer")
-                .setCancelable(false)
-                .setItems(modes, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        int mode = which + 1;
-                        if (mode == 1) {
-                            requestShizuku();
-                        } else {
-                            startFPS(2);
-                        }
-                    }
-                }).show();
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQ_OVERLAY) {
+            if (Settings.canDrawOverlays(this)) {
+                showModeDialog();
+            } else {
+                Toast.makeText(this, "Chưa cấp quyền, không thể hiển thị overlay.", Toast.LENGTH_LONG).show();
+                finish();
+            }
+        }
     }
 
-    private void requestShizuku() {
+    // ─── Mode dialog ────────────────────────────────────────────
+    private void showModeDialog() {
+    new AlertDialog.Builder(this)
+            .setTitle("Chọn phương thức")
+            .setMessage("github.com/binhmod/FPSViewer")
+
+            // Nút 1: Shizuku
+            .setPositiveButton("Shizuku (ADB)", (dialog, which) -> {
+                handleShizuku();
+            })
+
+            // Nút 2: Root
+            .setNeutralButton("Root (Magisk/KernelSU)", (dialog, which) -> {
+                startFPSService(2);
+            })
+
+            // Nút 3: Hủy
+            .setNegativeButton("Hủy", (d, w) -> finish())
+
+            .setCancelable(false)
+            .show();
+}
+
+    // ─── Shizuku flow ───────────────────────────────────────────
+    private void handleShizuku() {
+        // Kiểm tra Shizuku có đang chạy không
         if (!Shizuku.pingBinder()) {
             new AlertDialog.Builder(this)
-                    .setMessage("Shizuku not started!")
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface d, int w) {
-                            finish();
-                        }
-                    }).show();
+                    .setTitle("Shizuku chưa chạy")
+                    .setMessage("Vui lòng khởi động Shizuku trước.\n\nTải tại: shizuku.dev")
+                    .setPositiveButton("OK", (d, w) -> finish())
+                    .show();
             return;
         }
 
+        // Đã có quyền
         if (Shizuku.checkSelfPermission() == PackageManager.PERMISSION_GRANTED) {
-            startFPS(1);
+            startFPSService(1);
             return;
         }
 
-        Shizuku.addRequestPermissionResultListener(new Shizuku.OnRequestPermissionResultListener() {
-            @Override
-            public void onRequestPermissionResult(int requestCode, int grantResult) {
-                if (grantResult == PackageManager.PERMISSION_GRANTED) {
-                    startFPS(1);
-                } else {
-                    Toast.makeText(MainActivity.this, "Shizuku denied!", Toast.LENGTH_SHORT).show();
-                }
+        // Xin quyền
+        shizukuListener = (requestCode, grantResult) -> {
+            // Remove listener ngay
+            if (shizukuListener != null) {
+                Shizuku.removeRequestPermissionResultListener(shizukuListener);
+                shizukuListener = null;
             }
-        });
 
-        Shizuku.requestPermission(REQ);
+            if (grantResult == PackageManager.PERMISSION_GRANTED) {
+                startFPSService(1);
+            } else {
+                runOnUiThread(() ->
+                        Toast.makeText(this, "Shizuku từ chối quyền!", Toast.LENGTH_SHORT).show()
+                );
+                finish();
+            }
+        };
+
+        Shizuku.addRequestPermissionResultListener(shizukuListener);
+        Shizuku.requestPermission(REQ_SHIZUKU);
     }
 
-    private void startFPS(final int mode) {
+    // ─── Start service ──────────────────────────────────────────
+    private void startFPSService(int mode) {
         Intent i = new Intent(this, FPSService.class);
         i.putExtra("mode", mode);
         startService(i);
-        
-        getWindow().getDecorView().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                finish();
-            }
-        }, 300);
+
+        // Tự đóng sau 300ms
+        getWindow().getDecorView().postDelayed(this::finish, 300);
+    }
+
+    @Override
+    protected void onDestroy() {
+        // Cleanup listener nếu activity bị destroy giữa chừng
+        if (shizukuListener != null) {
+            Shizuku.removeRequestPermissionResultListener(shizukuListener);
+            shizukuListener = null;
+        }
+        super.onDestroy();
     }
 }

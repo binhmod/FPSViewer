@@ -5,69 +5,122 @@ import android.graphics.*;
 import android.view.View;
 import java.util.LinkedList;
 
-/**
- * @author binhmod
- * @date 2026/6/3
- */
-
 public class FPSView extends View {
-    private Paint textPaint, graphPaint, bgPaint;
-    private String fpsText = "0 FPS", pkgText = "";
-    private LinkedList<Integer> fpsHistory = new LinkedList<Integer>();
-    private final int MAX_HISTORY = 40;
+
+    private final Paint bgPaint;
+    private final Paint fpsPaint;
+    private final Paint pkgPaint;
+    private final Paint graphStrokePaint;
+    private final Paint graphFillPaint;
+
+    private String fpsText = "-- FPS";
+    private String pkgText = "";
+    private final LinkedList<Double> history = new LinkedList<>();
+    private static final int   MAX_HISTORY   = 60;
+    private static final float MAX_FPS_SCALE = 120f;
+    private static final float CORNER        = 14f;
+
+    private final RectF bgRect = new RectF();
 
     public FPSView(Context c) {
         super(c);
-        bgPaint = new Paint();
-        bgPaint.setColor(0x99000000);
+        setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 
-        textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        textPaint.setTextSize(45);
-        textPaint.setFakeBoldText(true);
+        bgPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        bgPaint.setColor(0xBB0A0A0A);
 
-        graphPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        graphPaint.setStrokeWidth(3);
-        graphPaint.setStyle(Paint.Style.STROKE);
+        fpsPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        fpsPaint.setTextSize(46f);
+        fpsPaint.setFakeBoldText(true);
+        fpsPaint.setTypeface(Typeface.MONOSPACE);
+        fpsPaint.setShadowLayer(6f, 1f, 2f, 0xDD000000);
+
+        pkgPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        pkgPaint.setTextSize(17f);
+        pkgPaint.setColor(0xCCFFFFFF);
+        pkgPaint.setShadowLayer(4f, 1f, 1f, 0xDD000000);
+
+        graphStrokePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        graphStrokePaint.setStrokeWidth(2f);
+        graphStrokePaint.setStyle(Paint.Style.STROKE);
+        graphStrokePaint.setStrokeCap(Paint.Cap.ROUND);
+        graphStrokePaint.setStrokeJoin(Paint.Join.ROUND);
+
+        graphFillPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        graphFillPaint.setStyle(Paint.Style.FILL);
     }
 
-    public void update(int fps, String pkg) {
-        this.fpsText = fps + " FPS";
-        this.pkgText = pkg;
-        
+    public void update(double fps, String pkg) {
+        fpsText = String.format("%.1f FPS", fps);
+        pkgText = pkg != null ? pkg : "";
+
         int color;
-        if (fps >= 60) color = Color.GREEN;
-        else if (fps >= 30) color = Color.YELLOW;
-        else color = Color.RED;
+        if      (fps >= 60) color = 0xFF4CAF50;
+        else if (fps >= 30) color = 0xFFFFEB3B;
+        else                color = 0xFFF44336;
 
-        textPaint.setColor(color);
-        graphPaint.setColor(color);
+        fpsPaint.setColor(color);
+        graphStrokePaint.setColor(color);
+        graphFillPaint.setColor((color & 0x00FFFFFF) | 0x3D000000);
 
-        fpsHistory.addLast(fps);
-        if (fpsHistory.size() > MAX_HISTORY) fpsHistory.removeFirst();
-        postInvalidate();
+        history.addLast(fps);
+        if (history.size() > MAX_HISTORY) history.removeFirst();
+
+        invalidate();
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawRoundRect(new RectF(0, 0, getWidth(), getHeight()), 20, 20, bgPaint);
+        int w = getWidth();
+        int h = getHeight();
 
-        if (fpsHistory.size() > 1) {
-            Path path = new Path();
-            float xStep = (float) getWidth() / MAX_HISTORY;
-            float h = getHeight();
-            for (int i = 0; i < fpsHistory.size(); i++) {
+        bgRect.set(0, 0, w, h);
+        canvas.drawRoundRect(bgRect, CORNER, CORNER, bgPaint);
+
+        // Graph as background
+        if (history.size() > 1) {
+            float xStep   = (float) w / (MAX_HISTORY - 1);
+            float gTop    = 4f;
+            float gHeight = h - 8f;
+
+            Path stroke = new Path();
+            Path fill   = new Path();
+
+            for (int i = 0; i < history.size(); i++) {
                 float x = i * xStep;
-                float y = h - (fpsHistory.get(i) * h / 144f);
-                if (i == 0) path.moveTo(x, y); else path.lineTo(x, y);
+                float norm = (float)(history.get(i) / MAX_FPS_SCALE);
+                float y = gTop + gHeight - norm * gHeight;
+                y = Math.max(gTop + 2, Math.min(y, gTop + gHeight - 2));
+
+                if (i == 0) {
+                    stroke.moveTo(x, y);
+                    fill.moveTo(x, gTop + gHeight);
+                    fill.lineTo(x, y);
+                } else {
+                    stroke.lineTo(x, y);
+                    fill.lineTo(x, y);
+                }
             }
-            canvas.drawPath(path, graphPaint);
+            float lastX = (history.size() - 1) * xStep;
+            fill.lineTo(lastX, 4f + (h - 8f));
+            fill.close();
+
+            canvas.drawPath(fill,   graphFillPaint);
+            canvas.drawPath(stroke, graphStrokePaint);
         }
 
-        canvas.drawText(fpsText, 30, 60, textPaint);
-        Paint pText = new Paint(textPaint);
-        pText.setTextSize(22);
-        pText.setColor(Color.WHITE);
-        pText.setFakeBoldText(false);
-        canvas.drawText(pkgText, 30, 95, pText);
+        // FPS text overlaid on graph
+        canvas.drawText(fpsText, 12f, h * 0.72f, fpsPaint);
+
+        // Package name — truncate to last 2 segments if too wide
+        if (!pkgText.isEmpty()) {
+            String label = pkgText;
+            if (pkgPaint.measureText(label) > getWidth() - 16f) {
+                String[] parts = label.split("\\.");
+                if (parts.length >= 2)
+                    label = parts[parts.length - 2] + "." + parts[parts.length - 1];
+            }
+            canvas.drawText(label, 12f, h * 0.94f, pkgPaint);
+        }
     }
 }
